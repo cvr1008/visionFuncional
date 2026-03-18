@@ -51,9 +51,9 @@ preguntas = [
     "8. Reconocer caras de personas por la calle.",
     "9. Leer letreros grandes en la calle, nombres de tiendas, etc.",
     "10. Identificar bordillos/escalones o irregularidades en el suelo.",
-    "11. Hacer trabajos manuales finos/precisos (ej. coser, manualidades, carpintería).",
-    "12. Participar en deportes (ej. petanca, tenis/pádel, golf) o ver deporte en vivo.",
-    "13. Participar en sus aficiones (jugar a juegos de mesa, cartas)"
+    "11. 🧵 Hacer trabajos manuales finos/precisos (ej. coser, manualidades, carpintería).",
+    "12. 🏌️🏓 Participar en deportes (ej. petanca, tenis/pádel, golf) o ver deporte en vivo.",
+    "13. 🎮 Participar en sus aficiones (jugar a juegos de mesa, cartas, pasear)"
 ]
 
 preguntas_conduccion = [
