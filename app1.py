@@ -3,25 +3,28 @@ import streamlit as st
 # Configuración de la página
 st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="centered")
 
-# --- CSS PERSONALIZADO (LETRAS Y BOTONES MÁS GRANDES) ---
+# --- CSS PERSONALIZADO (DISEÑO PROFESIONAL Y LIMPIO) ---
 st.markdown("""
     <style>
-    /* 1. Botones de Siguiente, Anterior y Enviar más grandes */
+    /* 1. OCULTAR ELEMENTOS POR DEFECTO DE STREAMLIT */
+    #MainMenu {visibility: hidden;} /* Oculta el menú de los 3 puntos */
+    header {visibility: hidden;}    /* Oculta la cabecera superior (Deploy, GitHub, etc.) */
+    footer {visibility: hidden;}    /* Oculta el pie de página de "Made with Streamlit" */
+    
+    /* 2. BOTONES Y LETRAS MÁS GRANDES (ACCESIBILIDAD) */
     div.stButton > button:first-child {
-        padding: 16px 24px !important; /* Más altura y anchura */
-        font-size: 18px !important;    /* Letra más grande */
-        font-weight: bold !important;  /* Letra en negrita */
-        border-radius: 10px !important; /* Bordes más redondeados */
+        padding: 16px 24px !important; 
+        font-size: 18px !important;    
+        font-weight: bold !important;  
+        border-radius: 10px !important; 
     }
     
-    /* 2. Opciones de respuesta (los circulitos) más separadas y grandes */
     div.stRadio > div[role="radiogroup"] label {
-        font-size: 18px !important;     /* Texto de la opción más grande */
-        padding-top: 10px !important;   /* Espacio por arriba */
-        padding-bottom: 10px !important;/* Espacio por abajo para que sea fácil darle con el dedo */
+        font-size: 18px !important;     
+        padding-top: 10px !important;   
+        padding-bottom: 10px !important;
     }
     
-    /* 3. El texto de las preguntas un poco más grande */
     h3 {
         font-size: 24px !important;
     }
