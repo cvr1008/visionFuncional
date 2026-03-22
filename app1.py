@@ -3,6 +3,31 @@ import streamlit as st
 # Configuración de la página
 st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="centered")
 
+# --- CSS PERSONALIZADO (LETRAS Y BOTONES MÁS GRANDES) ---
+st.markdown("""
+    <style>
+    /* 1. Botones de Siguiente, Anterior y Enviar más grandes */
+    div.stButton > button:first-child {
+        padding: 16px 24px !important; /* Más altura y anchura */
+        font-size: 18px !important;    /* Letra más grande */
+        font-weight: bold !important;  /* Letra en negrita */
+        border-radius: 10px !important; /* Bordes más redondeados */
+    }
+    
+    /* 2. Opciones de respuesta (los circulitos) más separadas y grandes */
+    div.stRadio > div[role="radiogroup"] label {
+        font-size: 18px !important;     /* Texto de la opción más grande */
+        padding-top: 10px !important;   /* Espacio por arriba */
+        padding-bottom: 10px !important;/* Espacio por abajo para que sea fácil darle con el dedo */
+    }
+    
+    /* 3. El texto de las preguntas un poco más grande */
+    h3 {
+        font-size: 24px !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- SISTEMA DE NAVEGACIÓN (Paginación) ---
 if 'indice_actual' not in st.session_state:
     st.session_state.indice_actual = -1  
