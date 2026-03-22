@@ -91,7 +91,7 @@ imagenes_preguntas = {
     "2. Ver la televisión.": "images/tele.jpg",
     "3. Ver los precios cuando hace la compra.": "images/compra.jpg",
     "4. Escribir cartas/textos a mano, hacer sudokus/crucigramas, etc.": "images/escribir.jpg",
-    "5. Manejar el ordenador (trabajar con word/excel) con fines laborales.": "images/ordenador.jpg",
+    "5. Manejar el ordenador (trabajar con word/excel) con fines laborales.": "images/ordenador.webp",
     "6. Manejar el teléfono móvil/ tablet.": "images/movil.webp",
     "7. Cocinar":"images/cocinar.jpeg",
     "8. Reconocer caras de personas por la calle.": "images/encontrarse_gente.jpeg",
