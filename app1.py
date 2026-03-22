@@ -3,30 +3,26 @@ import streamlit as st
 # Configuración de la página
 st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="centered")
 
-# --- CSS PERSONALIZADO (DISEÑO PROFESIONAL Y LIMPIO) ---
+# --- CSS PERSONALIZADO (DISEÑO LIMPIO Y BLINDADO) ---
 st.markdown("""
     <style>
-    /* 1. OCULTAR ELEMENTOS POR DEFECTO DE STREAMLIT */
-    #MainMenu {visibility: hidden;} /* Oculta el menú de los 3 puntos */
-    header {visibility: hidden;}    /* Oculta la cabecera superior (Deploy, GitHub, etc.) */
-    footer {visibility: hidden;}    /* Oculta el pie de página de "Made with Streamlit" */
+    /* 1. OCULTAR CABECERA, MENÚ, GITHUB Y FOOTER DEFINITIVAMENTE */
+    [data-testid="stHeader"] { visibility: hidden !important; }
+    [data-testid="stToolbar"] { visibility: hidden !important; }
+    [data-testid="stDecoration"] { visibility: hidden !important; }
+    footer { visibility: hidden !important; }
     
-    /* 2. BOTONES Y LETRAS MÁS GRANDES (ACCESIBILIDAD) */
+    /* 2. BOTONES PRINCIPALES CÓMODOS */
     div.stButton > button:first-child {
-        padding: 16px 24px !important; 
-        font-size: 18px !important;    
+        padding: 12px 20px !important; 
         font-weight: bold !important;  
-        border-radius: 10px !important; 
+        border-radius: 8px !important; 
     }
     
+    /* 3. OPCIONES DE RESPUESTA (Letra normal, pero fáciles de pulsar con el dedo) */
     div.stRadio > div[role="radiogroup"] label {
-        font-size: 18px !important;     
         padding-top: 10px !important;   
         padding-bottom: 10px !important;
-    }
-    
-    h3 {
-        font-size: 24px !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -60,8 +56,6 @@ opciones = {
 }
 
 # --- SISTEMA DE PESOS CLÍNICOS ---
-# Las preguntas normales tienen un peso de 1.
-# Aplicamos la escala 30% (3), 50% (5) y 70% (7) a la conducción.
 pesos_preguntas = {
     "15. Conducir de noche.": 3,                 # 30% de gravedad relativa
     "16. Conducir al amanecer y/o atardecer.": 5,  # 50% de gravedad relativa
@@ -92,7 +86,6 @@ preguntas_conduccion = [
 ]
 
 # DICCIONARIO DE IMÁGENES 
-# Aquí enlazas el texto exacto de la pregunta con su foto.
 imagenes_preguntas = {
     "1. Leer un periódico o un libro.": "images/periodico.webp",
     "2. Ver la televisión.": "images/tele.jpg",
@@ -106,12 +99,7 @@ imagenes_preguntas = {
     "10. Identificar bordillos/escalones o irregularidades en el suelo.": "images/adoquin.jpg",
     "11. Hacer trabajos manuales finos/precisos (ej. coser, manualidades, carpintería).": "images/destornillador.webp",
     "12. Participar en deportes (ej. petanca, tenis/pádel, golf) o ver deporte en vivo.": "images/golf.avif",
-    "13. Participar en sus aficiones (jugar a juegos de mesa, cartas, pasear)": "images/cartas.jpg",
-    "14. Conducir de día.": "images/conducir_de_dia.webp",
-    "15. Conducir de noche.": "images/conducir_de_noche.jpg",
-    "16. Conducir al amanecer y/o atardecer.": "images/conducir_amanecer.avif",
-    "17. Distinguir señales de tráfico y carteles en la carretera.": "images/señales_trafico.jpg"
-
+    "13. Participar en sus aficiones (jugar a juegos de mesa, cartas, pasear)": "images/cartas.jpg"
 }
 
 
@@ -131,7 +119,7 @@ if st.session_state.indice_actual == -1:
     st.button("Comenzar cuestionario ➡️", on_click=avanzar, use_container_width=True)
 
 # ==========================================
-# PANTALLA 1: Preguntas de la 3 a la 15
+# PANTALLA 1: Preguntas de la 1 a la 13
 # ==========================================
 elif 0 <= st.session_state.indice_actual < len(preguntas):
     pregunta_actual = preguntas[st.session_state.indice_actual]
@@ -141,12 +129,11 @@ elif 0 <= st.session_state.indice_actual < len(preguntas):
     st.markdown(f"### {pregunta_actual}")
     
     # MOSTRAR LA IMAGEN SI EXISTE ---
-    # Busca si la pregunta actual está en nuestro diccionario de imágenes
     if pregunta_actual in imagenes_preguntas:
         try:
-            # Pinta la imagen ocupando el ancho del móvil
-            st.image(imagenes_preguntas[pregunta_actual], use_container_width=True)
-            st.write("") # Espaciador
+            # Pinta la imagen con un ancho máximo controlado
+            st.image(imagenes_preguntas[pregunta_actual], width=350)
+            st.write("") 
         except Exception as e:
             st.error("No se pudo cargar la imagen asociada.")
 
@@ -166,8 +153,9 @@ elif 0 <= st.session_state.indice_actual < len(preguntas):
 
     st.write("---")
     col1, col2 = st.columns(2)
-    with col1: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
-    with col2: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
+    # Siguiente primero, Anterior después
+    with col1: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
+    with col2: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
 
 # ==========================================
 # PANTALLA 2: Filtro de Conducción
@@ -182,17 +170,19 @@ elif st.session_state.indice_actual == len(preguntas):
 
     st.write("---")
     col1, col2 = st.columns(2)
-    with col1: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
     
+    # Siguiente primero, Anterior después
     if conduce == "No":
         def saltar_a_resultados():
             st.session_state.indice_actual = len(preguntas) + len(preguntas_conduccion) + 1
-        with col2: st.button("Siguiente ➡️", on_click=saltar_a_resultados, use_container_width=True)
+        with col1: st.button("Siguiente ➡️", on_click=saltar_a_resultados, use_container_width=True)
     else:
-        with col2: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
+        with col1: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
+        
+    with col2: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
 
 # ==========================================
-# PANTALLA 3: Preguntas de Conducción (16-19)
+# PANTALLA 3: Preguntas de Conducción (14-17)
 # ==========================================
 elif len(preguntas) < st.session_state.indice_actual <= len(preguntas) + len(preguntas_conduccion):
     indice_cond = st.session_state.indice_actual - len(preguntas) - 1
@@ -201,6 +191,14 @@ elif len(preguntas) < st.session_state.indice_actual <= len(preguntas) + len(pre
     st.markdown("### 🚗 Conducción")
     st.markdown(f"**{pregunta_actual}**")
     
+    # Lógica de imágenes para conducción por si las añades en el futuro
+    if pregunta_actual in imagenes_preguntas:
+        try:
+            st.image(imagenes_preguntas[pregunta_actual], width=350)
+            st.write("")
+        except Exception:
+            pass
+
     respuesta_previa = list(opciones.keys())[0]
     if pregunta_actual in st.session_state.respuestas:
         for key, val in opciones.items():
@@ -217,18 +215,21 @@ elif len(preguntas) < st.session_state.indice_actual <= len(preguntas) + len(pre
 
     st.write("---")
     col1, col2 = st.columns(2)
-    with col1: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
     
+    # Siguiente/Calcular primero, Anterior después
     if indice_cond == len(preguntas_conduccion) - 1:
-        with col2: st.button("✅ Calcular resultados", type="primary", on_click=avanzar, use_container_width=True)
+        with col1: st.button("✅ Calcular resultados", type="primary", on_click=avanzar, use_container_width=True)
     else:
-        with col2: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
+        with col1: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
+        
+    with col2: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
 
 # ==========================================
 # PANTALLA 4: Resultados
 # ==========================================
 else:
-    st.header("📋 Resultados")
+    st.title("📋 Resultados del Cuestionario")
+    st.write("---")
     
     puntos_obtenidos = 0
     puntos_maximos = 0
