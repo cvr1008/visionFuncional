@@ -7,25 +7,28 @@ from modelo import *
 
 def aplicar_estilos():
 
-    # --- CSS PERSONALIZADO (DISEÑO LIMPIO Y BLINDADO) ---
+    # --- CSS PERSONALIZADO (DISEÑO BLINDADO Y SIN HUECOS) ---
     st.markdown("""
         <style>
-        /* 1. FULMINAR CABECERA, MENÚ, GITHUB, BARQUITO Y FOOTER */
-        [data-testid="stHeader"] { display: none !important; }
-        [data-testid="stToolbar"] { display: none !important; }
-        [data-testid="stAppDeployButton"] { display: none !important; }
-        #viewerBadgeToRender { display: none !important; }
-        header { display: none !important; }
-        footer { display: none !important; }
+        /* 1. Ocultar cabecera, menú y pie de página */
+        header { visibility: hidden !important; }
+        #MainMenu { visibility: hidden !important; }
+        footer { visibility: hidden !important; }
         
-        /* 2. BOTONES PRINCIPALES CÓMODOS */
+        /* 2. Quitar el hueco en blanco gigante de la parte superior */
+        .block-container {
+            padding-top: 2rem !important;
+            padding-bottom: 0rem !important;
+        }
+        
+        /* 3. Botones principales cómodos */
         div.stButton > button:first-child {
             padding: 12px 20px !important; 
             font-weight: bold !important;  
             border-radius: 8px !important; 
         }
         
-        /* 3. OPCIONES DE RESPUESTA (Letra normal, pero fáciles de pulsar con el dedo) */
+        /* 4. Opciones de respuesta separadas para pulsar fácil */
         div.stRadio > div[role="radiogroup"] label {
             padding-top: 10px !important;   
             padding-bottom: 10px !important;
