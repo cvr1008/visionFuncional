@@ -1,6 +1,5 @@
-# model.py (MODELO)
+# modelo.py
 import streamlit as st
-from vista import *
 
 opciones = {
     "Sin dificultad": 4,
@@ -12,9 +11,9 @@ opciones = {
 }
 
 pesos_conduccion = {
-    "15. Conducir de noche.": 3,
-    "16. Conducir al amanecer y/o atardecer.": 5,
-    "14. Conducir de día.": 7
+    "15. Conducir de noche.": 3,                 
+    "16. Conducir al amanecer y/o atardecer.": 5,  
+    "14. Conducir de día.": 7                    
 }
 
 preguntas = [
@@ -59,18 +58,18 @@ imagenes_preguntas = {
 def calcular_resultados():
     puntos_obtenidos = 0
     puntos_maximos = 0
-
+    
     for p in preguntas:
         if p in st.session_state.respuestas and st.session_state.respuestas[p] is not None:
-            peso = pesos_conduccion.get(p, 1)
+            peso = pesos_conduccion.get(p, 1) 
             puntos_obtenidos += st.session_state.respuestas[p] * peso
             puntos_maximos += 4 * peso
-
+            
     if st.session_state.conduce == "Sí":
         for p in preguntas_conduccion:
             if p in st.session_state.respuestas and st.session_state.respuestas[p] is not None:
                 peso = pesos_conduccion.get(p, 1)
                 puntos_obtenidos += st.session_state.respuestas[p] * peso
                 puntos_maximos += 4 * peso
-
+                
     return puntos_obtenidos, puntos_maximos
