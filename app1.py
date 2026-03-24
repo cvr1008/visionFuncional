@@ -1,6 +1,8 @@
 import streamlit as st
-
-# Configuración de la página
+"""
+Configuración de la página:
+Se establece el título, el icono representativo y el diseño centrado de la página.
+"""
 st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="centered")
 
 # --- CSS PERSONALIZADO (DISEÑO LIMPIO Y BLINDADO) ---
@@ -29,7 +31,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- SISTEMA DE NAVEGACIÓN (Paginación) ---
+
+# SISTEMA DE NAVEGACIÓN (Paginación)
+"""
+Streamlit, al recargarse en cada interacción, emplea
+"""
 if 'indice_actual' not in st.session_state:
     st.session_state.indice_actual = -1  
 if 'respuestas' not in st.session_state:
@@ -58,7 +64,7 @@ opciones = {
 }
 
 # --- SISTEMA DE PESOS CLÍNICOS ---
-pesos_preguntas = {
+pesos_conduccion = {
     "15. Conducir de noche.": 3,                 # 30% de gravedad relativa
     "16. Conducir al amanecer y/o atardecer.": 5,  # 50% de gravedad relativa
     "14. Conducir de día.": 7                    # 70% de gravedad relativa
@@ -243,14 +249,14 @@ else:
     
     for p in preguntas:
         if p in st.session_state.respuestas and st.session_state.respuestas[p] is not None:
-            peso = pesos_preguntas.get(p, 1) 
+            peso = pesos_conduccion.get(p, 1) 
             puntos_obtenidos += st.session_state.respuestas[p] * peso
             puntos_maximos += 4 * peso
             
     if st.session_state.conduce == "Sí":
         for p in preguntas_conduccion:
             if p in st.session_state.respuestas and st.session_state.respuestas[p] is not None:
-                peso = pesos_preguntas.get(p, 1)
+                peso = pesos_conduccion.get(p, 1)
                 puntos_obtenidos += st.session_state.respuestas[p] * peso
                 puntos_maximos += 4 * peso
 
