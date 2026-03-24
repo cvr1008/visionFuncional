@@ -6,11 +6,13 @@ st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="ce
 # --- CSS PERSONALIZADO (DISEÑO LIMPIO Y BLINDADO) ---
 st.markdown("""
     <style>
-    /* 1. OCULTAR CABECERA, MENÚ, GITHUB Y FOOTER DEFINITIVAMENTE */
-    [data-testid="stHeader"] { visibility: hidden !important; }
-    [data-testid="stToolbar"] { visibility: hidden !important; }
-    [data-testid="stDecoration"] { visibility: hidden !important; }
-    footer { visibility: hidden !important; }
+    /* 1. FULMINAR CABECERA, MENÚ, GITHUB, BARQUITO Y FOOTER */
+    [data-testid="stHeader"] { display: none !important; }
+    [data-testid="stToolbar"] { display: none !important; }
+    [data-testid="stAppDeployButton"] { display: none !important; }
+    #viewerBadgeToRender { display: none !important; }
+    header { display: none !important; }
+    footer { display: none !important; }
     
     /* 2. BOTONES PRINCIPALES CÓMODOS */
     div.stButton > button:first-child {
@@ -103,9 +105,10 @@ imagenes_preguntas = {
 }
 
 
-# ==========================================
+
+
 # PANTALLA 0: Bienvenida (-1)
-# ==========================================
+
 if st.session_state.indice_actual == -1:
     st.title("👁️ Cuestionario de Visión Funcional")
     st.write("---")
@@ -118,9 +121,10 @@ if st.session_state.indice_actual == -1:
     st.write("---")
     st.button("Comenzar cuestionario ➡️", on_click=avanzar, use_container_width=True)
 
-# ==========================================
+
+
 # PANTALLA 1: Preguntas de la 1 a la 13
-# ==========================================
+
 elif 0 <= st.session_state.indice_actual < len(preguntas):
     pregunta_actual = preguntas[st.session_state.indice_actual]
     progreso = (st.session_state.indice_actual + 1) / (len(preguntas) + 1)
@@ -157,9 +161,10 @@ elif 0 <= st.session_state.indice_actual < len(preguntas):
     with col1: st.button("Siguiente ➡️", on_click=avanzar, use_container_width=True)
     with col2: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
 
-# ==========================================
+
+
 # PANTALLA 2: Filtro de Conducción
-# ==========================================
+
 elif st.session_state.indice_actual == len(preguntas):
     st.progress(1.0)
     st.markdown("### 🚗 Conducción")
@@ -181,9 +186,10 @@ elif st.session_state.indice_actual == len(preguntas):
         
     with col2: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
 
-# ==========================================
+
+
 # PANTALLA 3: Preguntas de Conducción (14-17)
-# ==========================================
+
 elif len(preguntas) < st.session_state.indice_actual <= len(preguntas) + len(preguntas_conduccion):
     indice_cond = st.session_state.indice_actual - len(preguntas) - 1
     pregunta_actual = preguntas_conduccion[indice_cond]
@@ -224,9 +230,10 @@ elif len(preguntas) < st.session_state.indice_actual <= len(preguntas) + len(pre
         
     with col2: st.button("⬅️ Anterior", on_click=retroceder, use_container_width=True)
 
-# ==========================================
+
+
 # PANTALLA 4: Resultados
-# ==========================================
+
 else:
     st.title("📋 Resultados del Cuestionario")
     st.write("---")
