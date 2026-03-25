@@ -30,9 +30,7 @@ st.markdown("""
 
 
 # SISTEMA DE NAVEGACIÓN (Paginación)
-"""
-Streamlit, al recargarse en cada interacción, emplea
-"""
+
 if 'indice_actual' not in st.session_state:
     st.session_state.indice_actual = -1  
 if 'respuestas' not in st.session_state:
