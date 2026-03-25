@@ -1,8 +1,5 @@
 import streamlit as st
-"""
-Configuración de la página:
-Se establece el título, el icono representativo y el diseño centrado de la página.
-"""
+
 st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="centered")
 
 # --- CSS PERSONALIZADO (DISEÑO LIMPIO Y BLINDADO) ---
@@ -280,4 +277,4 @@ else:
         st.warning("El paciente ha seleccionado opciones no puntuables en todas las preguntas.")
 
     st.write("---")
-    st.button("🔄 Nuevo paciente (Reiniciar)", on_click=reiniciar, use_container_width=True)
+    st.button("🔄Reiniciar", on_click=reiniciar, use_container_width=True)
