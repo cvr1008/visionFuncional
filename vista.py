@@ -175,4 +175,4 @@ def vista_resultados():
         st.warning("El paciente ha seleccionado opciones no puntuables en todas las preguntas.")
 
     st.write("---")
-    st.button("🔄 Nuevo paciente (Reiniciar)", on_click=reiniciar, use_container_width=True)
+    st.button("🔄 Reiniciar", on_click=reiniciar, use_container_width=True)
