@@ -51,7 +51,7 @@ imagenes_preguntas = {
     "9. Leer letreros grandes en la calle, nombres de tiendas, etc.": "images/letreros_calle.jpg",
     "10. Identificar bordillos/escalones o irregularidades en el suelo.": "images/adoquin.jpg",
     "11. Hacer trabajos manuales finos/precisos (ej. coser, manualidades, carpintería).": "images/destornillador.webp",
-    "12. Participar en deportes (ej. petanca, tenis/pádel, golf) o ver deporte en vivo.": "images/golf.avif",
+    "12. Participar en deportes (ej. petanca, tenis/pádel, golf) o ver deporte en vivo.": "images/golf.jpg",
     "13. Participar en sus aficiones (jugar a juegos de mesa, cartas, pasear)": "images/cartas.jpg"
 }
 
