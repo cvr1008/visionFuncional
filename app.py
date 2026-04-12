@@ -1,11 +1,12 @@
 # app.py
 import streamlit as st
+from modelo import *
+from vista import *
 
 # REGLA DE ORO DE STREAMLIT: Esto siempre en la línea 1 (después de importar streamlit)
 st.set_page_config(page_title="Cuestionario VF", page_icon="👁️", layout="centered")
 
-from modelo import *
-from vista import *
+
 
 aplicar_estilos()
 init_state()
