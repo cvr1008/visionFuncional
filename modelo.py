@@ -35,8 +35,7 @@ preguntas = [
 preguntas_conduccion = [
     "14. Conducir de día.",
     "15. Conducir de noche.",
-    "16. Conducir al amanecer y/o atardecer.",
-    "17. Distinguir señales de tráfico y carteles en la carretera."
+    "16. Conducir al amanecer y/o atardecer."
 ]
 
 imagenes_preguntas = {
