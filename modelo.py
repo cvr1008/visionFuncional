@@ -52,7 +52,10 @@ imagenes_preguntas = {
     "10. Identificar bordillos/escalones o irregularidades en el suelo.": "images/adoquin.jpg",
     "11. Hacer trabajos manuales finos/precisos (ej. coser, manualidades, carpintería).": "images/destornillador.webp",
     "12. Participar en deportes (ej. petanca, tenis/pádel, golf) o ver deporte en vivo.": "images/golf.jpg",
-    "13. Participar en sus aficiones (jugar a juegos de mesa, cartas, pasear)": "images/cartas.jpg"
+    "13. Participar en sus aficiones (jugar a juegos de mesa, cartas, pasear)": "images/cartas.jpg",
+    "14. Conducir de día.": "images/conducir_de_dia.webp",
+    "15. Conducir de noche.": "images/conducir_de_noche.jpg",
+    "16. Conducir al amanecer y/o atardecer.": "images/conducir_amanecer.avif"
 }
 
 def calcular_resultados():
