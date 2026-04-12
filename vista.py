@@ -25,6 +25,15 @@ def aplicar_estilos():
             padding-top: 10px !important;   
             padding-bottom: 10px !important;
         }
+                
+        /* 4. IMÁGENES CON TAMAÑO UNIFORME Y BORDES REDONDEADOS */
+        [data-testid="stImage"] img {
+            width: 350px !important;
+            height: 220px !important;
+            object-fit: cover !important;  /* Recorta lo sobrante sin deformar */
+            border-radius: 12px !important; /* Le da un toque de App moderna */
+        }
+        
         </style>
     """, unsafe_allow_html=True)
 
